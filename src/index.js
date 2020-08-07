@@ -2,6 +2,6 @@
 import * as $ from 'jquery'
 // JS
 import './js/libs'
-import './js/main'
+import './js/header'
 // SCSS
 import './scss/main.scss'

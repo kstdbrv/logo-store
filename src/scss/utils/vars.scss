@@ -1,43 +1,44 @@
 //FONTS
-%sf-regular{
-  font-family:'SFProDisplay-Regular', sans-serif;
-  font-weight: 400;
+//main-font
+%Roboto-Regular{
+  font-family:'Roboto-Regular', sans-serif;
+  font-weight: 500;
+}
+%Roboto-Bold{
+  font-family:'Roboto-Bold', sans-serif;
+  font-weight: 700;
+}
+%Roboto-Light{
+  font-family: 'Roboto-Light', sans-serif;
+  font-weight: 300;
+}
+%Play{
+  font-family: 'Play-Bold', sans-serif;
+  font-weight: 700;
 }
 
-// Font
-$Montserrat          : 'Montserrat', sans-serif;  
-$Quicksand           : 'Quicksand-Bold', sans-serif;
 
 
-/* // Size
-$mainFontColor           : #101010;
+
+$mainFontColor           : #fff;
 $mainFontSize            : 18px;
-$mainFontWeight          : 400;
-$mainLineHeight          : 1.4;
+$mainLineHeight          : 1;
 
-$desktopWidth            : 1920px;
+$maxWidth                :1400;
+$minWidth                :320px;
+$maxWidthContainer       :1170;
+$md1: $maxWidthContainer +12;
+$md2                     :991.98;
+$md3                     :767.98;
+$md4                     :479.98;
+
+$desktopWidth            : 1400px;
 $smDesktopWidth          : 980px;
 $tableWidth              : 768px;
 $phoneWidth              : 480px;
 $smPhoneWidth            : 320px;
 
-// Main color
-$default-color           : #ffffff;
-$primary-color           : #444ce0;
-$success-color           : #26de81;
-$danger-color            : #fc5c65;
-$warning-color           : #fed330;
-$light-color             : #999999;
-$purple-color            : #8854d0;
 
-// Neutral Color
-$neutral-primary         : #303133;
-$neutral-regular         : #606266;
-$neutral-secondary       : #909399;
-$neutral-placeholder     : #C0C4CC;
 
-// Border Color
-$border-base             : #DCDFE6;
-$border-light            : #E4E7ED;
-$border-lighter          : #EBEEF5;
-$border-lightex          : #F2F6FC; */
+
+

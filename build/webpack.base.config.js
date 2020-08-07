@@ -10,6 +10,9 @@ const PATHS = {
   dist: path.join(__dirname, '../dist')
 }
 
+const PAGES_DIR = `${PATHS.src}/pug/pages/`
+const PAGES = fs.readdirSync(PAGES_DIR).filter(fileName => fileName.endsWith('.pug'))
+
 module.exports = {
   externals: {
     paths: PATHS
@@ -118,11 +121,9 @@ module.exports = {
         { from: `${PATHS.src}/static`, to: '' }, 
       ],
     }),
-    new HtmlWebpackPlugin({
-      hash: true,
-      minify: true,
-      template: `${PATHS.src}/index.html`,
-      filename: './index.html'
-    })
+    ...PAGES.map(page => new HtmlWebpackPlugin({
+      template: `${PAGES_DIR}/${page}`,
+      filename: `./${page.replace(/\.pug/,'.html')}`
+    }))
   ],
 }
