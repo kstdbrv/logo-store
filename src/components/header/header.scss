@@ -1,8 +1,8 @@
 .header{
-  background: url('/images/header/bg-header.jpg') top no-repeat;
+  background: url('./images/bg-header.jpg') top no-repeat;
   @media (max-width: 860px){
-    background: url('/images/header/bg-header.jpg') right no-repeat;
-    background: url('/images/header/bg-header.jpg') right -20px no-repeat;
+    background: url('./images/bg-header.jpg') right no-repeat;
+    background: url('./images/bg-header.jpg') right -20px no-repeat;
   }
 }
 .top-header{
@@ -10,7 +10,6 @@
     display: flex;
     align-items: center;
     min-height: 90px;
-    text-align: center;
     @media (max-width: 860px){
       min-height: 70px;
     }
@@ -197,7 +196,7 @@
         content: "";
         left: -35px;
         bottom: 0;
-        background: url('/images/header/phone1.png');
+        background: url('./images/phone1.png');
         background-repeat:no-repeat;
         background-size: contain;
         height: 24px;
@@ -237,7 +236,7 @@
       position: relative;
       z-index: 5;
      display: inline-block;
-     background: url('/images/header/phone1.png');
+     background: url('./images/phone1.png');
      width: 19px;
      height: 25px;
      font-size: 0px;
@@ -294,13 +293,13 @@
       color: rgba(152, 152, 152, 1);
     }
     &_login{
-      background: url('/images/header/login.png')left no-repeat;
+      background: url('./images/login.png')left no-repeat;
     }
     &_reg{
-      background: url('/images/header/user.png')left no-repeat;
+      background: url('./images/user.png')left no-repeat;
    }
     &_email{
-      background: url('/images/header/mail.png')left no-repeat;
+      background: url('./images/mail.png')left no-repeat;
    }
  }
 }
@@ -314,7 +313,7 @@
   }
 
   &__callback{
-    background: url('/images/header/callback.png')left no-repeat;
+    background: url('./images/callback.png')left no-repeat;
     padding-left: 32px;
     color: rgba(152, 152, 152, 1);
     display: inline-block;
@@ -342,7 +341,7 @@
 
   }
   &__schedule{
-    background: url('/images/header/schedule.png')left no-repeat;
+    background: url('./images/schedule.png')left no-repeat;
     padding-left: 37px;
     color: rgba(152, 152, 152, 1);
     font-size: 12px;
@@ -363,7 +362,7 @@
   &__cart{
     position: relative;
     z-index: 8;
-    background: url('/images/header/card.png')left no-repeat;
+    background: url('./images/card.png')left no-repeat;
     display: inline-block;
     width: 43px;
     height: 43px;

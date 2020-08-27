@@ -24,6 +24,7 @@ body {
 	color: $mainFontColor;
   margin: 0;
   padding: 0;
+  min-width: 320px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -71,4 +72,4 @@ ul, li {
 
 
 // components
-@import "./modules/header";
+@import "../../components/header/header";

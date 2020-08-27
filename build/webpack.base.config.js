@@ -5,13 +5,18 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
+
 const PATHS = {
   src: path.join(__dirname, '../src'),
-  dist: path.join(__dirname, '../dist')
+  dist: path.join(__dirname, '../dist'),
+  assets: 'assets/'
 }
 
-const PAGES_DIR = `${PATHS.src}/pug/pages/`
-const PAGES = fs.readdirSync(PAGES_DIR).filter(fileName => fileName.endsWith('.pug'))
+const PAGES_DIR = `${PATHS.src}/pages/`
+const FOLDERS = fs.readdirSync(PAGES_DIR)
+let pages = []
+for(let folder of FOLDERS) pages.push(fs.readdirSync(`${PAGES_DIR}/${folder}`).filter(fileneme => fileneme.endsWith('.pug')))
+pages = pages.flat()
 
 module.exports = {
   externals: {
@@ -21,9 +26,8 @@ module.exports = {
     app: ['@babel/polyfill', PATHS.src],
   },
   output: {
-    filename: `js/[name].[chunkhash].js`,
-    path: PATHS.dist,
-    publicPath: '/'
+    filename: `${PATHS.assets}js/[name].[chunkhash].js`,
+    path: PATHS.dist
   },
   optimization: {
     splitChunks: {
@@ -44,7 +48,7 @@ module.exports = {
       loader: 'expose-loader',
       options: {
         exposes: ['$', 'jQuery'],
-      }
+    }
     },
     {
       test: /\.pug$/,
@@ -64,17 +68,23 @@ module.exports = {
       }
     },
     {
-      test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+      test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
       loader: 'file-loader',
       options: {
-      name: '[name].[ext]'
+        name: '[name].[ext]',
+        outputPath: `${PATHS.assets}fonts`,
+        publicPath: `${PATHS.assets}fonts`
+        /* publicPath: (pathFromRoot) => `${PATHS.assets}fonts/${pathFromRoot}` */
     }
     },
     {
-      test: /\.(png|jpg|gif|svg)$/, 
+      test: /\.(png|jpg|gif|svg)$/,
       loader: 'file-loader',
       options: {
-        name: 'images/[name].[ext]', /* css */
+        name: '[name].[ext]',
+        outputPath: `${PATHS.assets}images`,
+        publicPath: `${PATHS.assets}images`
+        /* publicPath: (pathFromRoot) => `${PATHS.assets}images/${pathFromRoot}` */
     }
     },
     {
@@ -84,45 +94,33 @@ module.exports = {
         MiniCssExtractPlugin.loader,
         {
           loader: 'css-loader',
-          options: { sourceMap: true }
+          options: {
+            sourceMap: true,
+          }
+        }, {
+          loader: 'resolve-url-loader'
         }, {
           loader: 'postcss-loader',
           options: { sourceMap: true, config: { path: `./postcss.config.js` } }
         }, {
           loader: 'sass-loader',
           options: { sourceMap: true }
-        }, 
-      ]
-      },
-      {
-      test: /\.css$/,
-      use: [
-        'style-loader',
-        MiniCssExtractPlugin.loader,
-        {
-          loader: 'css-loader',
-          options: { sourceMap: true }
-        }, {
-          loader: 'postcss-loader',
-          options: { sourceMap: true, config: { path: `./postcss.config.js` } }
         }
       ]
-    }]
+    },]
   },
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: `css/[name].[contenthash].css`,
+      filename: '[name].[contenthash].css'
     }),
     new CopyWebpackPlugin({
       patterns: [
-        { from: `${PATHS.src}/images`, to: 'images' },
-        { from: `${PATHS.src}/fonts`, to: 'fonts' },
         { from: `${PATHS.src}/static`, to: '' }, 
       ],
     }),
-    ...PAGES.map(page => new HtmlWebpackPlugin({
-      template: `${PAGES_DIR}/${page}`,
+    ...pages.map(page => new HtmlWebpackPlugin({
+      template: `${PAGES_DIR}/${page.replace(/\.[^.]+$/, '')}/${page}`,
       filename: `./${page.replace(/\.pug/,'.html')}`
     }))
   ],

@@ -24,7 +24,7 @@ header.header
                    a.menu__link(href="#") Контакты
         .top-header__column
            a.top-header__logo(href="")
-             img(src="/images/header/logo.png", alt="logo")
+             img(src=require("./images/logo.png").default, alt="logo")
         .top-header__column
           .top-header__contacts.contacts-header
             .contacts-header__column.contacts-header__column_forcart
@@ -51,7 +51,7 @@ header.header
         .bottom-header__column
          .bottom-header__info.info-header
             .info-header__column
-             a.info-header__callback(href="#")(data-da="menu__list,6,640")
+             a.info-header__callback(href="#" data-da="menu__list,6,640")
                 span Обратный звонок
             .info-header__column
              a.info-header__schedule(href="#")
@@ -62,7 +62,7 @@ header.header
                   span Сб–Вс:
                   | 10:00–20:00
             .info-header__column
-              a.info-header__cart(href="#")(data-da="contacts-header__column_forcart,3,640")
+              a.info-header__cart(href="#" data-da="contacts-header__column_forcart,3,640")
                span 12
 
               
