@@ -1,0 +1,225 @@
+.page{
+  &__container{
+    display: flex;
+    justify-content: space-between;
+  }
+  &__aside{
+    width: 261px;
+  }
+}
+.menu-page{
+  position: relative;
+  background:url('./images/bg-menu.png') top no-repeat;
+  &__header{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+  }
+  &__title{
+    @extend %unisans;
+    font-size: 30px;
+    color: rgba(255, 255, 255, 1);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    line-height: 35px;
+  }
+  &__line{
+    position: relative;
+    height: 18px;
+  }
+  &__burger{
+    height: 35px;
+    flex: 0 0 36px;
+    background-color: rgba(74, 129, 144, 1);
+    display: block;
+    cursor: pointer;
+    z-index: 5;
+    position: relative;
+    padding: 9px 5px;
+     span{
+       transition: all 0.3s ease 0s;
+       top: calc(50%-1px);
+       left: 0;
+       position: absolute;
+       width: 100%;
+       height: 2px;
+       background-color:#fff;
+       &:first-child{
+         top: 0;
+       }
+       &:last-child{
+         top: auto;
+         bottom: 0;
+       }
+     }
+     &.active{
+       span{
+        transform: scale(0);
+        &:first-child{
+          transform: rotate(-45deg);
+          top: calc(50%-1px);
+         }
+        &:last-child{
+          transform: rotate(45deg);
+          bottom: calc(50%-1px);
+        }
+      }
+    }
+  }
+  &__item{
+     border-bottom: 1px solid rgba(96, 166, 183, 1);
+     &:last-child{
+      border-bottom:none;
+      padding-bottom: 10px;
+      position: relative;
+    }
+    &_parent{
+      .menu-page__link{
+        &::after{
+          content:'';
+          position: absolute;
+          background-image:url('./images/menu-arrow.png');
+          right: 15px;
+          top: 50%;
+          transform:translate(0px, -50%);
+          width: 14px;
+          height: 14px;
+        }
+      }
+    }
+  }
+  &__link{
+    @extend %Roboto-Light;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 1);
+    letter-spacing: 0.03em;
+    padding: 12px 20px;
+    display: block;
+    position: relative;
+    &:hover{
+      background-color:rgba(75, 131, 146, 1);
+    }
+  }
+  &__submenu{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+}
+.submenu-page{
+  &__item{
+    position: absolute;
+    top: 0;
+    left: 0%;  
+    height: 100%;
+    width: 261px;
+    transform:translate(-100%, 0px);
+    background-color: rgba(255, 255, 255, 1);
+    border: 2px solid rgba(75, 131, 146, 1);
+    transition: all .5s;
+    &_active{
+      .submenu-page__item{
+        transform: translate(0%, 0px);
+        z-index: 2;
+      }
+    }
+  }
+  &__menu{
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(221, 221, 221, 1);
+  }
+  &__link{
+    @extend %Roboto-Light;
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(106, 184, 204, 1);
+    letter-spacing: 0.03em;
+    padding: 10px 49px;
+    display: block;
+    &:hover{
+      color:$mainFontColor;
+      background-color:rgba(143, 198, 209, 1);
+    }
+    &:active{
+      color: rgba(106, 184, 204, 1);
+      background-color:#fff;
+    }
+  }
+  &__product{
+    padding: 15px 0;
+  }
+}
+.item-product{
+  position: relative;
+  padding: 55px 15px;
+  &__body{
+    padding: 0 10px;
+  }
+  &__lables{
+   position: absolute;
+   top: 15px;
+   left: 15px;
+  }
+  &__lable{
+    display: none;
+    background-color: rgba(226, 131, 49, 1);
+    padding: 6px 15px;
+    border-radius: 13px;
+    &_active{
+      display: block;
+    }
+  }
+  &__img{
+    height: 195px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+  }
+  img{
+   max-width: 100%;
+   max-height: 175px;
+  }
+  &__title{
+    width: 210px;
+    @extend %Roboto-Light;
+    font-size: 16px;
+    color: rgba(94, 147, 157, 1);
+    padding-bottom: 10px;
+    &:hover{
+      text-decoration: underline;
+    }
+    &:active{
+      text-decoration: none;
+    }
+  }
+  &__footer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+  }
+  &__old-price{
+    flex: 1 1 100%;
+    @extend %Roboto-Light;
+    font-size: 18px;
+    color: rgba(152, 152, 152, 1);
+    text-decoration: line-through;
+    text-align: right;
+  }
+  &__add{
+    width: 40px;
+    height: 40px;
+    background-image:url('./images/cart-grey.png');
+  }
+  &__price{
+    @extend %Roboto-Bold;
+    color: rgba(54, 54, 54, 1);
+    line-height: 24px;
+    text-align: right;
+  }
+}
